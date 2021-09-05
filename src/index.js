@@ -3,7 +3,7 @@ require('./db/mongoose')
 const path = require('path')
 const hbs = require('hbs')
 const userRouter = require('./routers/user')
-const problemRouter = require('./routers/problem')
+const productRouter = require('./routers/product')
 const cookieParser = require('cookie-parser')
 const multer = require('multer')
 
@@ -13,7 +13,7 @@ const port = process.env.PORT
 app.use(express.json()) // Automatically parse JSON data into an object.
 app.use(cookieParser())
 app.use(userRouter)
-app.use(problemRouter)
+app.use(productRouter)
 app.use(function (err, req, res, next) {
   if (err instanceof multer.MulterError) {
     res.status(400).send('File too large (>1mb)')
