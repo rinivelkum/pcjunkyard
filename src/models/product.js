@@ -14,9 +14,6 @@ const productSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
-      trim: true,
-      maxLength: 2000,
-      minLength: 30,
     },
     sku: {
       type: String,
@@ -48,7 +45,6 @@ const productSchema = new mongoose.Schema(
       get: (v) => Math.round(v),
       set: (v) => Math.round(v),
     },
-    images: [Buffer],
     reviews: [
       {
         grade: { type: Number, min: 0, max: 5 },
@@ -67,5 +63,6 @@ const productSchema = new mongoose.Schema(
 
 // productSchema.statics.discountSku(sku)
 // productSchema.statics.discountGroup(group)
+const Product = mongoose.model('Product', productSchema)
 
-module.exports = productSchema
+module.exports = Product
