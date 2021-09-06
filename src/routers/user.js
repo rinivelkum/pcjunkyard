@@ -53,8 +53,8 @@ router.post('/users/create', upload.fields([]), async (req, res) => {
 
   try {
     await user.save()
-    const token = await user.generateAuthToken()
-    res.cookie('Authorization', token, { maxAge: 300000 })
+    const token = await user.generateAuthToken('60')
+    res.cookie('Authorization', token, { maxAge: 60 * 60 * 1000 })
     res.redirect('/')
   } catch (e) {
     res.render('create', {
