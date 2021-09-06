@@ -15,9 +15,13 @@ const resize = require('../middleware/resize')
 const admins = require('../utils/constants/admins')
 // Login page
 router.get('/users/login', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
   res.render('login', {
     loggedIn: req.user ? true : false,
-    basketItems: req.user ? req.user.basket.length : 0,
+    basketItems,
     admin: req.user ? admins.has(req.user.email) : false,
   })
 })
@@ -37,7 +41,7 @@ router.get('/users/checkout', auth, async (req, res) => {
   } else {
     res.render('checkout', {
       loggedIn: true,
-      basketItems: req.user ? req.user.basket.length : 0,
+      basketItems: req.user.basket.length ? req.user.basket.length : 0,
       admin: req.user ? admins.has(req.user.email) : false,
     })
   }

@@ -45,6 +45,7 @@ const productSchema = new mongoose.Schema(
       get: (v) => Math.round(v),
       set: (v) => Math.round(v),
     },
+    image: String,
     reviews: [
       {
         grade: { type: Number, min: 0, max: 5 },

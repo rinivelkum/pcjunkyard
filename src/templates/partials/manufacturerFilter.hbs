@@ -1,0 +1,675 @@
+<!-- Producator -->
+<h3 class='pt-4'>Producator</h3>
+<div class='pt-6 overflow-auto h-40' id='filter-section-0'>
+  <div class='space-y-4'>
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-0'
+        name='manufacturer[]'
+        value='AM'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-0' class='ml-3 text-sm text-gray-600'>
+        AMD
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-1'
+        name='manufacturer[]'
+        value='AS'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-1' class='ml-3 text-sm text-gray-600'>
+        ASRock
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-2'
+        name='manufacturer[]'
+        value='AS'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-2' class='ml-3 text-sm text-gray-600'>
+        ASUS
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-3'
+        name='manufacturer[]'
+        value='BI'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-3' class='ml-3 text-sm text-gray-600'>
+        Biostar
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-4'
+        name='manufacturer[]'
+        value='EV'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-4' class='ml-3 text-sm text-gray-600'>
+        EVGA
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-5'
+        name='manufacturer[]'
+        value='GB'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-5' class='ml-3 text-sm text-gray-600'>
+        Gigabyte
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-6'
+        name='manufacturer[]'
+        value='MS'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-6' class='ml-3 text-sm text-gray-600'>
+        MSI
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-7'
+        name='manufacturer[]'
+        value='NV'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-7' class='ml-3 text-sm text-gray-600'>
+        NVIDIA
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-8'
+        name='manufacturer[]'
+        value='PL'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-8' class='ml-3 text-sm text-gray-600'>
+        Palit
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-9'
+        name='manufacturer[]'
+        value='PN'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-9' class='ml-3 text-sm text-gray-600'>
+        PNY
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-10'
+        name='manufacturer[]'
+        value='PC'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-10' class='ml-3 text-sm text-gray-600'>
+        Powercolor
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-11'
+        name='manufacturer[]'
+        value='SP'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-11' class='ml-3 text-sm text-gray-600'>
+        Sapphire
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-12'
+        name='manufacturer[]'
+        value='ZO'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-12' class='ml-3 text-sm text-gray-600'>
+        Zotac
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-13'
+        name='manufacturer[]'
+        value='XF'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-13' class='ml-3 text-sm text-gray-600'>
+        XFX
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-14'
+        name='manufacturer[]'
+        value='IN'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-14' class='ml-3 text-sm text-gray-600'>
+        Intel
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-15'
+        name='manufacturer[]'
+        value='AC'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-15' class='ml-3 text-sm text-gray-600'>
+        Acer
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-16'
+        name='manufacturer[]'
+        value='AD'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-16' class='ml-3 text-sm text-gray-600'>
+        Adata
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-17'
+        name='manufacturer[]'
+        value='CO'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-17' class='ml-3 text-sm text-gray-600'>
+        Corsair
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-17'
+        name='manufacturer[]'
+        value='CR'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-17' class='ml-3 text-sm text-gray-600'>
+        Crucial
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-18'
+        name='manufacturer[]'
+        value='GK'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-18' class='ml-3 text-sm text-gray-600'>
+        G.Skill
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-19'
+        name='manufacturer[]'
+        value='HX'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-19' class='ml-3 text-sm text-gray-600'>
+        HyperX
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-20'
+        name='manufacturer[]'
+        value='KS'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-20' class='ml-3 text-sm text-gray-600'>
+        Kingston
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-21'
+        name='manufacturer[]'
+        value='PT'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-21' class='ml-3 text-sm text-gray-600'>
+        Patriot
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-22'
+        name='manufacturer[]'
+        value='TG'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-22' class='ml-3 text-sm text-gray-600'>
+        TeamGroup
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-23'
+        name='manufacturer[]'
+        value='SG'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-23' class='ml-3 text-sm text-gray-600'>
+        Samsung
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-24'
+        name='manufacturer[]'
+        value='SE'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-24' class='ml-3 text-sm text-gray-600'>
+        Seagate
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-25'
+        name='manufacturer[]'
+        value='WD'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-25' class='ml-3 text-sm text-gray-600'>
+        WD
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-26'
+        name='manufacturer[]'
+        value='SD'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-26' class='ml-3 text-sm text-gray-600'>
+        SanDisk
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-27'
+        name='manufacturer[]'
+        value='BQ'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-27' class='ml-3 text-sm text-gray-600'>
+        Be quiet!
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-28'
+        name='manufacturer[]'
+        value='CM'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-28' class='ml-3 text-sm text-gray-600'>
+        Cooler Master
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-29'
+        name='manufacturer[]'
+        value='SN'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-29' class='ml-3 text-sm text-gray-600'>
+        Seasonic
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-30'
+        name='manufacturer[]'
+        value='TL'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-30' class='ml-3 text-sm text-gray-600'>
+        Thermalake
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-31'
+        name='manufacturer[]'
+        value='NT'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-31' class='ml-3 text-sm text-gray-600'>
+        Noctua
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-32'
+        name='manufacturer[]'
+        value='DC'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-32' class='ml-3 text-sm text-gray-600'>
+        Deepcool
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-33'
+        name='manufacturer[]'
+        value='NX'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-33' class='ml-3 text-sm text-gray-600'>
+        NZXT
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-34'
+        name='manufacturer[]'
+        value='FD'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-34' class='ml-3 text-sm text-gray-600'>
+        Fractal Design
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-manufacturer-35'
+        name='manufacturer[]'
+        value='LN'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneManChecked(this)'
+      />
+      <label for='filter-manufacturer-35' class='ml-3 text-sm text-gray-600'>
+        Lenovo
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Categorie -->
+<h3 class='pt-4'>Categorie</h3>
+<div class='pt-6 overflow-auto h-40' id='filter-section-0'>
+  <div class='space-y-4'>
+    <div class='flex items-center'>
+      <input
+        id='filter-category-0'
+        name='category[]'
+        value='01'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-0' class='ml-3 text-sm text-gray-600'>
+        GPU
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-1'
+        name='category[]'
+        value='02'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-1' class='ml-3 text-sm text-gray-600'>
+        CPU
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-2'
+        name='category[]'
+        value='03'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-2' class='ml-3 text-sm text-gray-600'>
+        Placi de Baza
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-3'
+        name='category[]'
+        value='04'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-3' class='ml-3 text-sm text-gray-600'>
+        Memorii
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-4'
+        name='category[]'
+        value='05'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-4' class='ml-3 text-sm text-gray-600'>
+        SSD
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-5'
+        name='category[]'
+        value='06'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-5' class='ml-3 text-sm text-gray-600'>
+        HDD
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-6'
+        name='category[]'
+        value='07'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-6' class='ml-3 text-sm text-gray-600'>
+        Surse
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-7'
+        name='category[]'
+        value='08'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-7' class='ml-3 text-sm text-gray-600'>
+        Carcase
+      </label>
+    </div>
+
+    <div class='flex items-center'>
+      <input
+        id='filter-category-87'
+        name='category[]'
+        value='09'
+        type='checkbox'
+        class='h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500'
+        onclick='onlyOneCatChecked(this)'
+      />
+      <label for='filter-category-8' class='ml-3 text-sm text-gray-600'>
+        Coolere
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Model -->
+<h3 class='pt-4'>Model</h3>
+<div>
+  <input
+    type='text'
+    id='productModel'
+    onkeyup='searchModel()'
+    class='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+  />
+
+  <div class='pt-6 overflow-auto h-40'>
+    <div class='space-y-4' id='modelList'>
+
+    </div>
+  </div>
+
+</div>
+
+<script src='/js/filterLogic.js'></script>
