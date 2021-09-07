@@ -1,13 +1,13 @@
 const types = new Map([
-  ['GPU', '01'],
-  ['CPU', '02'],
-  ['PLACI DE BAZA', '03'],
-  ['RAM', '04'],
-  ['SSD', '05'],
-  ['HDD', '06'],
-  ['SURSE', '07'],
-  ['CARCASE', '08'],
-  ['COOLERE', '09'],
+  ['01', 'PLACI VIDEO'],
+  ['02', 'PROCESOARE'],
+  ['03', 'PLACI DE BAZA'],
+  ['04', 'RAM'],
+  ['05', 'SSD'],
+  ['06', 'HDD'],
+  ['07', 'SURSE'],
+  ['08', 'CARCASE'],
+  ['09', 'COOLERE'],
 ])
 
 module.exports = types

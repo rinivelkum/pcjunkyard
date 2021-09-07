@@ -13,12 +13,9 @@ const upload = multer({
     fileSize: 1000000,
   },
 })
-const resize = require('../middleware/resize')
 const admins = require('../utils/constants/admins')
 const manufacturers = require('../utils/constants/manufacturers')
-const { Buffer } = require('buffer')
-const { model } = require('mongoose')
-const { modelName } = require('../models/user')
+const types = require('../utils/constants/types')
 
 router.get('/', auth, async (req, res) => {
   let basketItems = 0
@@ -38,18 +35,6 @@ router.get('/:cat', auth, async (req, res) => {
     basketItems = req.user.basket.length ? req.user.basket.length : 0
   }
   res.render('products', {
-    loggedIn: req.user ? true : false,
-    basketItems,
-    admin: req.user ? admins.has(req.user.email) : false,
-  })
-})
-
-router.get('/placi-video/:prodName', auth, async (req, res) => {
-  let basketItems = 0
-  if (req.user) {
-    basketItems = req.user.basket.length ? req.user.basket.length : 0
-  }
-  res.render('product', {
     loggedIn: req.user ? true : false,
     basketItems,
     admin: req.user ? admins.has(req.user.email) : false,
@@ -130,28 +115,12 @@ router.post('/add/item', [upload.fields([]), auth], async (req, res) => {
   if (req.user) {
     if (admins.has(req.user.email)) {
       try {
-        let model = ''
-        fs.readFile(
-          path.join(__dirname, '../utils/constants/groups.json'),
-          (err, buf) => {
-            if (err) {
-              console.log(error)
-            }
-            try {
-              model = JSON.parse(buf).groups.indexOf(req.body.model).toString()
-            } catch (e) {
-              console.log(e)
-            }
-          }
+        const sku = await Product.generateSku(
+          req.body.manufacturer,
+          req.body.category,
+          req.body.model
         )
-        if (model.length == 1) {
-          model = '00' + model
-        } else if (model.length == 2) {
-          model = '0' + model
-        }
 
-        const sku = req.body.manufacturer + req.body.category + '2222' + '156' // Need to add static method for creating skus
-        console.log(req.body, sku)
         const product = new Product({
           name: req.body.productName,
           description: req.body.description,
@@ -162,7 +131,6 @@ router.post('/add/item', [upload.fields([]), auth], async (req, res) => {
         })
 
         await product.save()
-        console.log(JSON.parse(product.image))
         res.send(product)
       } catch (e) {
         console.log(e)
@@ -170,6 +138,95 @@ router.post('/add/item', [upload.fields([]), auth], async (req, res) => {
       }
     }
   }
+})
+
+router.get('/data/:prodName', async (req, res) => {
+  try {
+    const name = req.params.prodName.replaceAll('+', ' ')
+    const product = await Product.findOne({
+      name,
+    }).lean()
+    if (product) {
+      models = await Product.getModels()
+
+      product.model = models[+product.sku.slice(4, -4)].toLowerCase()
+      product.category = types.get(product.sku.slice(2, -7)).toLowerCase()
+
+      res.send(product)
+    } else {
+      res.status(404).send()
+    }
+  } catch (e) {
+    res.status(500).send()
+  }
+})
+
+router.get('/data/review/:prodName', async (req, res) => {
+  const name = req.params.prodName.replaceAll('+', ' ')
+  try {
+    const reviews = await Product.findOne(
+      {
+        name,
+      },
+      'reviews',
+      { sort: { createdAt: -1 } }
+    )
+      .limit(10)
+      .lean()
+
+    if (reviews) {
+      res.send(reviews)
+    } else {
+      res.status(404).send()
+    }
+  } catch (e) {
+    res.status(500).send()
+  }
+})
+
+router.post(
+  '/data/review/:prodName',
+  [upload.fields([]), auth],
+  async (req, res) => {
+    const name = req.params.prodName.replaceAll('+', ' ')
+    try {
+      const product = await Product.findOne({
+        name,
+      })
+
+      if (product) {
+        product.reviews.push({
+          grade: req.body.grade,
+          review: req.body.review,
+        })
+        if (product.overallGrade) {
+          let sum = Number(product.overallGrade) + Number(req.body.grade)
+          product.overallGrade = (sum / 2).toFixed(2)
+        } else {
+          console.log(2)
+          product.overallGrade = req.body.grade
+        }
+        await product.save()
+        res.send(product)
+      } else {
+        res.status(404).send()
+      }
+    } catch (e) {
+      res.status(500).send()
+    }
+  }
+)
+
+router.get('/placi-video/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
 })
 
 module.exports = router

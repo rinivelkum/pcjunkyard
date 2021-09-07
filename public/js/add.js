@@ -35,7 +35,6 @@ const productQuant = document.querySelector('#productQuant')
 
 addModelButton.addEventListener('click', async (e) => {
   e.preventDefault()
-  console.log(document.querySelector('#addModel').value)
   if (document.querySelector('#addModel').value) {
     const formData = new FormData()
     formData.append('newGroup', document.querySelector('#addModel').value)
@@ -72,13 +71,9 @@ saveProductButton.addEventListener('click', async (e) => {
   ) {
     alert('Selecteaza modelul produsului')
   } else {
-    console.log('Price is ' + productPrice.value)
     formData.append('productName', productName.value)
     formData.append('productPrice', productPrice.value)
     formData.append('productQuant', productQuant.value)
-    console.log(
-      document.querySelectorAll("input[name='category[]']:checked")[0].value
-    )
     formData.append(
       'manufacturer',
       document.querySelectorAll("input[name='manufacturer[]']:checked")[0].value
@@ -102,23 +97,19 @@ saveProductButton.addEventListener('click', async (e) => {
           if (data.blocks.length === 0) {
             alert('Adauga o imagine')
           } else {
-            console.log(data)
             formData.append('productImage', JSON.stringify(data))
 
             if (formData.has('description') && formData.has('productImage')) {
               fetch('/add/item', {
                 method: 'POST',
                 body: formData,
-              }).then((result) =>
-                result
-                  .json()
-                  .then((data) => {
-                    console.log(data)
-                  })
-                  .catch((error) => {
-                    console.log(error)
-                  })
-              )
+              })
+                .then((result) => {
+                  window.location.href = `/`
+                })
+                .catch((error) => {
+                  console.log(error)
+                })
             } else {
               for (let pair of formData.entries()) {
                 console.log(pair[0] + ', ' + pair[1])
