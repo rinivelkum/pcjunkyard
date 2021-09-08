@@ -77,8 +77,26 @@ router.post('/users/login', upload.fields([]), async (req, res) => {
     const user = await User.findByCredentials(req.body.email, req.body.password)
     const token = await user.generateAuthToken(minutes)
 
-    res.cookie('Authorization', token, { maxAge: +minutes * 60 * 1000 }) // minute * 60 * 1000 = miliseconds
-    res.redirect('/')
+    res.cookie('Authorization', token, { maxAge: +minutes * 60 * 1000 }) / // minute * 60 * 1000 = miliseconds
+      res.redirect('/')
+  } catch (e) {
+    res.render('login', {
+      error: 'Email sau parola invalida!',
+    })
+  }
+})
+
+router.post('/users/loginPost', upload.fields([]), async (req, res) => {
+  let minutes = '1'
+  if ('rememberMe' in req.body) {
+    minutes = '60'
+  }
+  try {
+    const user = await User.findByCredentials(req.body.email, req.body.password)
+    const token = await user.generateAuthToken(minutes)
+
+    res.cookie('Authorization', token, { maxAge: +minutes * 60 * 1000 }) / // minute * 60 * 1000 = miliseconds
+      res.send({ token })
   } catch (e) {
     res.render('login', {
       error: 'Email sau parola invalida!',

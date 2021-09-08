@@ -70,19 +70,10 @@ productSchema.statics.generateSku = async (manufacturer, category, model) => {
   } else if (!types.has(category)) {
     throw new Error('Categoria introdusa nu exista')
   } else {
-    fs.readFile(
-      path.join(__dirname, '../utils/constants/groups.json'),
-      (err, buf) => {
-        if (err) {
-          console.log('S-a produs o erroare:', err)
-        } else {
-          let json = JSON.parse(buf).groups.length
-          if (model > json) {
-            throw new Error('Modelul introdus nu exista!')
-          }
-        }
-      }
-    )
+    const groups = await Product.getModels()
+    if (model > groups.length) {
+      throw new Error('Modelul introdus nu exista')
+    }
   }
 
   if (model.length === 2) {

@@ -107,7 +107,11 @@ router.post('/data/groups', [upload.fields([]), auth], async (req, res) => {
       } else {
         res.status(304).send()
       }
+    } else {
+      res.status(401).send()
     }
+  } else {
+    res.status(401).send()
   }
 })
 
@@ -168,7 +172,7 @@ router.get('/data/review/:prodName', async (req, res) => {
       {
         name,
       },
-      'reviews',
+      'reviews overallGrade',
       { sort: { createdAt: -1 } }
     )
       .limit(10)
@@ -184,38 +188,107 @@ router.get('/data/review/:prodName', async (req, res) => {
   }
 })
 
+router.get('/data/productlist', async (req, res) => {
+  const products = await Product.find({}, 'name sku image', {
+    sort: { createdAt: -1 },
+  }).lean()
+  if (products) {
+    res.send(products)
+  } else {
+    res.status(404).send()
+  }
+})
+
 router.post(
   '/data/review/:prodName',
   [upload.fields([]), auth],
   async (req, res) => {
     const name = req.params.prodName.replaceAll('+', ' ')
-    try {
-      const product = await Product.findOne({
-        name,
-      })
-
-      if (product) {
-        product.reviews.push({
-          grade: req.body.grade,
-          review: req.body.review,
+    if (req.user) {
+      try {
+        const product = await Product.findOne({
+          name,
         })
-        if (product.overallGrade) {
-          let sum = Number(product.overallGrade) + Number(req.body.grade)
-          product.overallGrade = (sum / 2).toFixed(2)
+
+        if (product) {
+          product.reviews.push({
+            grade: req.body.grade,
+            review: req.body.review,
+          })
+          if (product.overallGrade) {
+            let sum = Number(product.overallGrade) + Number(req.body.grade)
+            product.overallGrade = (sum / 2).toFixed(2)
+          } else {
+            product.overallGrade = req.body.grade
+          }
+          await product.save()
+          res.send(product)
         } else {
-          console.log(2)
-          product.overallGrade = req.body.grade
+          res.status(404).send()
         }
-        await product.save()
-        res.send(product)
-      } else {
-        res.status(404).send()
+      } catch (e) {
+        res.status(500).send()
       }
-    } catch (e) {
-      res.status(500).send()
+    } else {
+      res.status(401).send()
     }
   }
 )
+
+router.post('/basket/:sku', auth, async (req, res) => {
+  if (req.user) {
+    if (req.user.basket.has(req.params.sku)) {
+      const quantity = req.user.basket.get(req.params.sku) + 1
+      req.user.basket.set(req.params.sku, quantity)
+    } else {
+      req.user.basket.set(req.params.sku, 1)
+    }
+    console.log(req.user.basket)
+    await req.user.save()
+    res.send()
+  } else {
+    let cookie = req.cookies['Basket']
+    if (cookie !== undefined) {
+      let cookieData = JSON.parse(cookie)
+      if (cookieData.indexOf(req.params.sku) > -1) {
+        cookieData[indexOf(req.params.sku) + 1] =
+          cookieData[indexOf(req.params.sku) + 1] + 1
+        res.cookie('Basket', JSON.stringify(cookieData), {
+          maxAge: 60 * 60 * 1000,
+        })
+        res.send()
+      }
+    } else {
+      let cookieData = [req.params.sku, 1]
+      res.cookie('Basket', JSON.stringify(cookieData), {
+        maxAge: 60 * 60 * 1000,
+      })
+      res.send()
+    }
+  }
+})
+
+router.delete('/basket/:sku', auth, async (req, res) => {
+  if (req.user) {
+    req.user.basket.delete(req.params.sku)
+    await req.user.save()
+    res.send()
+  } else {
+    let cookie = req.cookies['Basket']
+    if (cookie !== undefined) {
+      let cookieData = JSON.parse(cookie)
+      if (cookieData.indexOf(req.params.sku) > -1) {
+        // use .slice to delete the 2 entries
+        res.cookie('Basket', JSON.stringify(cookieData), {
+          maxAge: 60 * 60 * 1000,
+        })
+        res.send()
+      }
+    } else {
+      res.status(404).send()
+    }
+  }
+})
 
 router.get('/placi-video/:prodName', auth, async (req, res) => {
   let basketItems = 0
@@ -229,4 +302,87 @@ router.get('/placi-video/:prodName', auth, async (req, res) => {
   })
 })
 
+router.get('/procesoare/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/placi-de-baza/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/sdd/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/hdd/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/surse/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/carcase/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
+
+router.get('/coolere/:prodName', auth, async (req, res) => {
+  let basketItems = 0
+  if (req.user) {
+    basketItems = req.user.basket.length ? req.user.basket.length : 0
+  }
+  res.render('product', {
+    loggedIn: req.user ? true : false,
+    basketItems,
+    admin: req.user ? admins.has(req.user.email) : false,
+  })
+})
 module.exports = router

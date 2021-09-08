@@ -13,6 +13,7 @@ const navModel = document.querySelector('#navModel')
 const navProduct = document.querySelector('#navProduct')
 const productReviewNumber = document.querySelector('#productReviewNumber')
 const addReview = document.querySelector('#addReview')
+const addToBasket = document.querySelector('#addToBasket')
 const reviewStar1 = document.querySelector('#reviewStar1')
 const reviewStar2 = document.querySelector('#reviewStar2')
 const reviewStar3 = document.querySelector('#reviewStar3')
@@ -66,6 +67,9 @@ fetch(`/data/${productName}`)
         })
         productHeading.textContent = data.name
         productQuant.textContent = 'Produse in stoc: ' + data.quantity
+        if (!data.quantity) {
+          addToBasket.style.display = 'none'
+        }
         productPrice.textContent = data.price + ' RON'
         productReviewNumber.textContent = data.reviews.length + ' review-uri'
         productReviewNumber.setAttribute('href', '#userReviews')
@@ -231,6 +235,28 @@ function getReviews() {
           `
           userReviews.appendChild(content)
         })
+        star1.classList =
+          data.overallGrade > 0
+            ? 'text-gray-700 h-5 w-5 flex-shrink-0'
+            : 'text-gray-200 h-5 w-5 flex-shrink-0'
+        star2.classList =
+          data.overallGrade > 1
+            ? 'text-gray-700 h-5 w-5 flex-shrink-0'
+            : 'text-gray-200 h-5 w-5 flex-shrink-0'
+        star3.classList =
+          data.overallGrade > 2
+            ? 'text-gray-700 h-5 w-5 flex-shrink-0'
+            : 'text-gray-200 h-5 w-5 flex-shrink-0'
+        star4.classList =
+          data.overallGrade > 3
+            ? 'text-gray-700 h-5 w-5 flex-shrink-0'
+            : 'text-gray-200 h-5 w-5 flex-shrink-0'
+        star5.classList =
+          data.overallGrade > 4
+            ? 'text-gray-700 h-5 w-5 flex-shrink-0'
+            : 'text-gray-200 h-5 w-5 flex-shrink-0'
+
+        productReviewNumber.textContent = data.reviews.length + ' review-uri'
       })
       .catch((error) => {
         userReviews.innerHTML = `An error happened`

@@ -53,10 +53,10 @@ saveProductButton.addEventListener('click', async (e) => {
   const formData = new FormData()
   if (!productName.value) {
     alert('Adauga numele produsului')
-  } else if (!productPrice.value) {
-    alert('Adauga pretul produsului')
-  } else if (!productQuant.value) {
-    alert('Adauga cantitatea produsului')
+  } else if (!productPrice.value || productPrice.value < 0) {
+    alert('Pret invalid!')
+  } else if (!productQuant.value || productQuant.value < 0) {
+    alert('Cantitate invalida')
   } else if (
     document.querySelectorAll("input[name='manufacturer[]']:checked").length ===
     0
