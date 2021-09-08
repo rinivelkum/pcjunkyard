@@ -14,10 +14,8 @@ const priceFilters = document.querySelector('#filter-section-2')
 const showPrice = document.querySelector('#show-filter-section-2')
 const hidePrice = document.querySelector('#hide-filter-section-2')
 
-fetch('/data/productlist').then((response) => {
-  response.json().then((data) => {
-    console.log(data)
-  })
+fetch('/product/list').then((response) => {
+  console.log(response)
 })
 
 sortButton.addEventListener('click', async (e) => {

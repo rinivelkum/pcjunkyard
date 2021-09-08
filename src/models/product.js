@@ -41,6 +41,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       min: [0, 'Procentajul de discount trebuie sa fie pozitiv'],
       max: [100, 'Discountul nu poate fi mai mult decat 100%'],
+      default: 0,
     },
     quantity: {
       type: Number,

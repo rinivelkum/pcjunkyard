@@ -188,15 +188,23 @@ router.get('/data/review/:prodName', async (req, res) => {
   }
 })
 
-router.get('/data/productlist', async (req, res) => {
+router.get('/product/list', async (req, res) => {
   const products = await Product.find({}, 'name sku image', {
     sort: { createdAt: -1 },
+    limit: 10,
   }).lean()
   if (products) {
     res.send(products)
   } else {
     res.status(404).send()
   }
+})
+
+router.post('/offer/:sku', auth, async (req, res) => {
+  const product = await Product.findOne({ sku: req.params.sku })
+  product.discount = req.body.discount
+  await product.save()
+  res.send(product)
 })
 
 router.post(
@@ -243,7 +251,7 @@ router.post('/basket/:sku', auth, async (req, res) => {
     } else {
       req.user.basket.set(req.params.sku, 1)
     }
-    console.log(req.user.basket)
+    res.send(req.user.basket)
     await req.user.save()
     res.send()
   } else {
@@ -251,12 +259,12 @@ router.post('/basket/:sku', auth, async (req, res) => {
     if (cookie !== undefined) {
       let cookieData = JSON.parse(cookie)
       if (cookieData.indexOf(req.params.sku) > -1) {
-        cookieData[indexOf(req.params.sku) + 1] =
-          cookieData[indexOf(req.params.sku) + 1] + 1
+        cookieData[cookieData.indexOf(req.params.sku) + 1] =
+          cookieData[cookieData.indexOf(req.params.sku) + 1] + 1
         res.cookie('Basket', JSON.stringify(cookieData), {
           maxAge: 60 * 60 * 1000,
         })
-        res.send()
+        res.send(res.cookie['Basket'])
       }
     } else {
       let cookieData = [req.params.sku, 1]
